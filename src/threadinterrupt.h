@@ -1,9 +1,9 @@
-// Copyright (c) 2016-2017 The Bitcoin Core developers
+// Copyright (c) 2016-2017 The GlobalBoost Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_THREADINTERRUPT_H
-#define BITCOIN_THREADINTERRUPT_H
+#ifndef GLOBALBOOST_THREADINTERRUPT_H
+#define GLOBALBOOST_THREADINTERRUPT_H
 
 #include <atomic>
 #include <chrono>
@@ -32,4 +32,4 @@ private:
     std::atomic<bool> flag;
 };
 
-#endif //BITCOIN_THREADINTERRUPT_H
+#endif //GLOBALBOOST_THREADINTERRUPT_H

@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2018 The GlobalBoost Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_PRIMITIVES_BLOCK_H
-#define BITCOIN_PRIMITIVES_BLOCK_H
+#ifndef GLOBALBOOST_PRIMITIVES_BLOCK_H
+#define GLOBALBOOST_PRIMITIVES_BLOCK_H
 
 #include <primitives/transaction.h>
 #include <serialize.h>
@@ -62,6 +62,8 @@ public:
 
     uint256 GetHash() const;
 
+    uint256 GetPoWHash() const;
+
     int64_t GetBlockTime() const
     {
         return (int64_t)nTime;
@@ -93,7 +95,7 @@ public:
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITEAS(CBlockHeader, *this);
+        READWRITE(*static_cast<CBlockHeader*>(this));
         READWRITE(vtx);
     }
 
@@ -152,4 +154,4 @@ struct CBlockLocator
     }
 };
 
-#endif // BITCOIN_PRIMITIVES_BLOCK_H
+#endif // GLOBALBOOST_PRIMITIVES_BLOCK_H

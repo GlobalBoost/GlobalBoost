@@ -1,14 +1,15 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Bitcoin Core developers
+// Copyright (c) 2009-2018 The GlobalBoost Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CHAIN_H
-#define BITCOIN_CHAIN_H
+#ifndef GLOBALBOOST_CHAIN_H
+#define GLOBALBOOST_CHAIN_H
 
 #include <arith_uint256.h>
 #include <consensus/params.h>
 #include <primitives/block.h>
+#include <pow.h>
 #include <tinyformat.h>
 #include <uint256.h>
 
@@ -294,6 +295,11 @@ public:
         return *phashBlock;
     }
 
+    uint256 GetBlockPoWHash() const
+    {
+        return GetBlockHeader().GetPoWHash();
+    }
+
     int64_t GetBlockTime() const
     {
         return (int64_t)nTime;
@@ -491,4 +497,4 @@ public:
     CBlockIndex* FindEarliestAtLeast(int64_t nTime) const;
 };
 
-#endif // BITCOIN_CHAIN_H
+#endif // GLOBALBOOST_CHAIN_H
