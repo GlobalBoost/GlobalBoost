@@ -18,9 +18,7 @@ uint256 CBlockHeader::GetHash() const
 
 uint256 CBlockHeader::GetPoWHash() const
 {
-    uint256 thash;
-    yescrypt_hash(BEGIN(nVersion), BEGIN(thash));
-    return thash;
+  return SerializeHashYescrypt(*this);
 }
 
 std::string CBlock::ToString() const

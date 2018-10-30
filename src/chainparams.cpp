@@ -132,6 +132,7 @@ public:
 
         vSeeds.emplace_back("seeder.globalboost.info"); // globalboost.info
         vSeeds.emplace_back("seeder2.globalboost.info");
+	vSeeds.emplace_back("seeder3.globalboost.info");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,77);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,139);
@@ -153,14 +154,15 @@ public:
                 {  2672, uint256S("0xe31f98339ec0c628bcc5bd20aef177bdef83deb7a606528c8977ad3a1f511906")},
                 { 29000, uint256S("0x63a67152f31a4596fc6ca5073ffe4cf68264922e740285f0ae7b3bb8cbc66b39")},
                 { 60000, uint256S("0x8ac508122d4f7b290c19cb45be6e071e7aace53cd043a892e79041672c1ba99d")},
+		{206494, uint256S("0xe852dcc3019c11a7f0589d418bc63f4a197c743e811db920221f930aa9abf589")},
             }
         };
-
+			
         chainTxData = ChainTxData{
             // Data from rpc: getchaintxstats 4096 0000000000000000002e63058c023a9a1de233554f28c7b21380b6c9003f36a8
-            /* nTime    */ 1448101689,
-            /* nTxCount */ 176760,
-            /* dTxRate  */ 2.4
+            /* nTime    */ 1540871844,
+            /* nTxCount */ 417071,
+            /* dTxRate  */ 0.002185580901340678
         };
 
         /* disable fallback fee on mainnet */
