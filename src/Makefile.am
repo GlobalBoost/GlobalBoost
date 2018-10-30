@@ -290,9 +290,9 @@ libglobalboost_wallet_a_SOURCES = \
   $(GLOBALBOOST_CORE_H)
 
 # crypto primitives library
-crypto_libglobalboost_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libglobalboost_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libglobalboost_crypto_a_CFLAGS = $(AM_CFLAGS) $(PIC_FLAGS)
+crypto_libglobalboost_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
+crypto_libglobalboost_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
+crypto_libglobalboost_crypto_base_a_CFLAGS = $(AM_CFLAGS) $(PIC_FLAGS)
 crypto_libglobalboost_crypto_base_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
