@@ -290,9 +290,9 @@ libglobalboost_wallet_a_SOURCES = \
   $(GLOBALBOOST_CORE_H)
 
 # crypto primitives library
-crypto_libglobalboost_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
-crypto_libglobalboost_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
-crypto_libglobalboost_crypto_base_a_CFLAGS = $(AM_CFLAGS) $(PIC_FLAGS)
+crypto_libglobalboost_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(GLOBALBOOST_CONFIG_INCLUDES)
+crypto_libglobalboost_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libglobalboost_crypto_base_a_CFLAGS = $(AM_CFLAGS) $(PIE_FLAGS) -fomit-frame-pointer
 crypto_libglobalboost_crypto_base_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
@@ -311,9 +311,17 @@ crypto_libglobalboost_crypto_base_a_SOURCES = \
   crypto/sha256.h \
   crypto/sha512.cpp \
   crypto/sha512.h \
+  crypto/yescrypt/yescrypt.c
+
+noinst_HEADERS = \
+  crypto/yescrypt/sha256.h \
+  crypto/yescrypt/sha256_c.h \
+  crypto/yescrypt/sysendian.h \
   crypto/yescrypt/yescrypt.h \
-  crypto/yescrypt/yescrypt-best.c \
-  crypto/yescrypt/yescryptcommon.c
+  crypto/yescrypt/yescrypt-best_c.h \
+  crypto/yescrypt/yescrypt-opt_c.h \
+  crypto/yescrypt/yescrypt-platform_c.h \
+  crypto/yescrypt/yescrypt-simd_c.h
 
 if USE_ASM
 crypto_libglobalboost_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp

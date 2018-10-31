@@ -1,5 +1,5 @@
 /*-
- * Copyright 2013,2014 Alexander Peslyak
+ * Copyright 2014 Alexander Peslyak
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -17,19 +17,14 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-
-#include <stdint.h>
-#include <string.h>
-#include <stdio.h>
 #include "yescrypt.h"
-
-
-#define HASH_SIZE 32 /* bytes */
+#include "sha256_c.h"
+#include "yescrypt-best_c.h"
 
 #define YESCRYPT_N 2048
-#define YESCRYPT_r 8
-#define YESCRYPT_p 1
-#define YESCRYPT_t 0
+#define YESCRYPT_R 8
+#define YESCRYPT_P 1
+#define YESCRYPT_T 0
 #define YESCRYPT_FLAGS (YESCRYPT_RW | YESCRYPT_PWXFORM)
 
 #ifdef __clang__
@@ -50,7 +45,7 @@ static int yescrypt_bsty(const uint8_t *passwd, size_t passwdlen,
         return -1;
     }
     retval = yescrypt_kdf(&shared, &local, passwd, passwdlen, salt, saltlen,
-                          YESCRYPT_N, YESCRYPT_r, YESCRYPT_p, YESCRYPT_t,
+                          YESCRYPT_N, YESCRYPT_R, YESCRYPT_P, YESCRYPT_T,
                           YESCRYPT_FLAGS, buf, buflen);
     if (yescrypt_free_local(&local)) {
         yescrypt_free_shared(&shared);
@@ -85,7 +80,7 @@ static int yescrypt_bsty(const uint8_t *passwd, size_t passwdlen,
         initialized = 1;
     }
     retval = yescrypt_kdf(&shared, &local, passwd, passwdlen, salt, saltlen,
-                          YESCRYPT_N, YESCRYPT_r, YESCRYPT_p, YESCRYPT_t,
+                          YESCRYPT_N, YESCRYPT_R, YESCRYPT_P, YESCRYPT_T,
                           YESCRYPT_FLAGS, buf, buflen);
 #if 0
     if (yescrypt_free_local(&local)) {
@@ -111,4 +106,3 @@ void yescrypt_hash(const char *input, char *output)
                      (const uint8_t *) input, 80,
                      (uint8_t *) output, 32);
 }
-

@@ -47,13 +47,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <openssl/sha.h>
-
-//#include "sysendian.h"
+#include "sha256.h"
+#include "sysendian.h"
 
 #include "yescrypt.h"
 
-#include "yescrypt-platform.c"
+#include "yescrypt-platform_c.h"
 
 #if __STDC_VERSION__ >= 199901L
 /* have restrict */
@@ -1145,7 +1144,7 @@ smix(uint8_t * B, size_t r, uint32_t N, uint32_t p, uint32_t t,
  *
  * Return 0 on success; or -1 on error.
  */
-int
+static int
 yescrypt_kdf(const yescrypt_shared_t * shared, yescrypt_local_t * local,
     const uint8_t * passwd, size_t passwdlen,
     const uint8_t * salt, size_t saltlen,
@@ -1355,13 +1354,7 @@ yescrypt_kdf(const yescrypt_shared_t * shared, yescrypt_local_t * local,
 		{
 			HMAC_SHA256_CTX ctx;
 			HMAC_SHA256_Init(&ctx, buf, buflen);
-#if 0
-/* Proper yescrypt */
- 			HMAC_SHA256_Update(&ctx, "Client Key", 10);
-#else
-/* GlobalBoost-Y buggy yescrypt */
 			HMAC_SHA256_Update(&ctx, salt, saltlen);
-#endif			
 			HMAC_SHA256_Final(sha256, &ctx);
 		}
 		/* Compute StoredKey */

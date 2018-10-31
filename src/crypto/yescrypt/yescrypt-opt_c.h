@@ -38,10 +38,12 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#include <openssl/sha.h>
-//#include "sysendian.h"
+#include "sha256.h"
+#include "sysendian.h"
 
-#include "yescrypt-platform.c"
+#include "yescrypt.h"
+
+#include "yescrypt-platform_c.h"
 
 static inline void
 blkcpy(uint64_t * dest, const uint64_t * src, size_t count)
@@ -713,7 +715,7 @@ smix(uint64_t * B, size_t r, uint64_t N, uint32_t p, uint32_t t,
  *
  * Return 0 on success; or -1 on error.
  */
-int
+static int
 yescrypt_kdf(const yescrypt_shared_t * shared, yescrypt_local_t * local,
     const uint8_t * passwd, size_t passwdlen,
     const uint8_t * salt, size_t saltlen,
